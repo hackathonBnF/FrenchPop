@@ -10,7 +10,10 @@ class GET extends Controler {
     }
     
     public function test() {
-        return "Test";
+        $map=$this->mapPath(['un','deux']);
+        $v=$this->getPV('v');
+        $v=$this->getQV('v');
+        return $map->un." ".$map->deux." Test ".$v;
     }
 }
 
