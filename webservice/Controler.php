@@ -32,6 +32,10 @@ class Controler {
         return $this->request->getQ($valName);
     }
     
+    protected function getPV($valName) {
+        return $this->request->getP($valName);
+    }
+    
     protected function error($msg) {
         $this->response->setError($msg);
         return null;

@@ -4,6 +4,7 @@ namespace frenchpop\webservice;
 class Request {
     protected $method;
     protected $queryParameters;
+    protected $postParameters;
     protected $datas;
     protected $path;
     
@@ -12,6 +13,7 @@ class Request {
         $this->method=$_SERVER['REQUEST_METHOD'];
         $this->queryParameters=$this->decodeQuery($_SERVER['QUERY_STRING']);
         $this->datas=$this->readInput();
+        $this->postParameters=$this->decodeQuery($this->datas);
         $this->path=explode('/',substr($_SERVER['PATH_INFO'],1));
     }
     
@@ -34,6 +36,12 @@ class Request {
     public function getQ($valName) {
         if (isset($this->queryParameters[$valName]))
             return $this->queryParameters[$valName];
+        else return false;
+    }
+    
+    public function getP($valName) {
+        if (isset($this->postParameters[$valName]))
+            return $this->postParameters[$valName];
         else return false;
     }
     
