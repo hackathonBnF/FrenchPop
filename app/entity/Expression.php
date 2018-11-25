@@ -5,6 +5,7 @@ namespace frenchpop\app\entity;
 use frenchpop\app\endpoint\DataBnf;
 use frenchpop\app\entity\Entity;
 use frenchpop\app\entity\Expression;
+use frenchpop\Frenchpop;
 
 class Expression extends Entity{
     protected $uri="";
@@ -20,6 +21,7 @@ class Expression extends Entity{
         return $this->title;
     }
 
+    
     /**
      * @return Ambigous <string, unknown>
      */
@@ -45,5 +47,21 @@ class Expression extends Entity{
                     break;
             }
         }
+    } 
+    
+    public function getId(){
+        if($this->id!== 0){
+            return $this->id;
+        }
+        $uri = $this->uri;
+        if(strpos($uri,'#Expression') !== false){
+            $uri= str_replace('#Expression','',$uri);
+        }
+        $r = Frenchpop::query("select id_ressource from ressources where identifiant='".$uri."'");
+        if($r->num_rows > 0){
+            $row =  $r->fetch_object();
+            $this->id = $row->id_ressource;
+        }
+        return $this->id;
     }
 }

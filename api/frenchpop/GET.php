@@ -66,27 +66,46 @@ class GET extends Controler {
     public function entity(){
         $thematics = $tags = [];
         $id_resource = $this->getQV('id_resource');
-        $r = FrenchPop::query("select * from ressources where id_ressource = ".$id_resource);
-        $row =  $r->fetch_object();
-        $resource = Entity::getInstance($row->num_type,$row->identifiant);
-        $r = FrenchPop::query("select * from thematique_ressource join thematiques on num_thematique = id_thematique where num_ressource = ".$id_resource);
-        while($row = $r->fetch_object()){
-            $thematics[] = $row;
+        $ark = $this->getQV('ark');
+        if($id_resource > 0){
+            $r = FrenchPop::query("select * from ressources where id_ressource = ".$id_resource);
+            $row =  $r->fetch_object();
+            $resource = Entity::getInstance($row->num_type,$row->identifiant);
+            $r = FrenchPop::query("select thematiques.id_thematique,label, thematique_ressource.commentaire from thematique_ressource join thematiques on num_thematique = id_thematique where num_ressource = ".$id_resource);
+            while($row = $r->fetch_object()){
+                $thematics[] = $row;
+            }
+            $r = FrenchPop::query("select tag.* from thematique_ressource join thematiques on num_thematique = id_thematique join thematique_ressource_tag on num_thematique_ressource = id_thematique_ressource join tag on id_tag = num_tag where num_ressource = ".$id_resource);
+            while($row = $r->fetch_object()){
+                $tags[] = $row;
+            }
+        }else{
+            $resource = Entity::getInstance(0,$ark);
         }
-        $r = FrenchPop::query("select tag.* from thematique_ressource join thematiques on num_thematique = id_thematique join thematique_ressource_tag on num_thematique_ressource = id_thematique_ressource join tag on id_tag = num_tag where num_ressource = ".$id_resource);
-        while($row = $r->fetch_object()){
-            $tags[] = $row;
-        }
-        try{
-            $html = FrenchPop::render(__DIR__."/resources/author.html", [
-                'resource' => $resource,
-                'thematics' => $thematics,
-                'tags' => $tags
-                
-            ]);
-        }catch(Exception $e){
-            var_dump($e);
-        }
+        $html = FrenchPop::render(__DIR__."/resources/author.html", [
+            'resource' => $resource,
+            'thematics' => $thematics,
+            'tags' => $tags
+        ]);
         return $html;
+    }
+    
+    public function thematique() {
+        
+        $id_thematique = $this->getQV('id_thematique');
+        
+        $r = FrenchPop::query("select label from thematiques where id_thematique=".$id_thematique);
+        $label = $r->fetch_object()->label;
+        
+//         $r = FrenchPop::query("select id_type, label from types order by label");
+//         $types = $r->fetch_all(MYSQLI_ASSOC);
+        
+        $data = [
+//             'id'=>$id_thematique,
+//             'label'=>$label,
+//             'types'=>$types,
+        ];
+        return FrenchPop::render(__DIR__."/resources/thematiques_aleatoire.html", $data);
+        
     }
 }

@@ -7,7 +7,7 @@ use frenchpop\app\entity\Entity;
 use frenchpop\app\entity\Expression;
 
 class Author extends Entity{
-    protected $arkNumber;
+   
     protected $name="";
     protected $familyName="";
     protected $givenName="";
