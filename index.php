@@ -7,4 +7,5 @@ require_once("FrenchPop.php");
 use frenchpop\FrenchPop;
 
 //FrenchPop::initStore();
+FrenchPop::connectDb();
 FrenchPop::initApi();

@@ -9,7 +9,8 @@ namespace {
         require_once($className.".php");
     });
 
-    require_once 'lib/arc2/ARC2.php';
+        require_once 'lib/arc2/ARC2.php';
+	require_once 'lib/h2o/h2o.php';
 }
 
 namespace frenchpop {    
@@ -27,7 +28,7 @@ namespace frenchpop {
             'pmblex'=>'http://www.pmbservices.fr/pmblex/'
         ];
 
-        private function __construct() {
+       private function __construct() {
 
         }
 
@@ -120,5 +121,10 @@ namespace frenchpop {
         public static function initApi() {
             $router=new webservice\Router();
         }
+	
+	public static function render($template, $params) {
+	    $h2o = new \h2o($template);
+	    return $h2o->render($params);
+	}
     }
 }
