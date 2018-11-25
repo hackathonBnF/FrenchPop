@@ -9,7 +9,7 @@ namespace {
         require_once($className.".php");
     });
 
-        require_once 'lib/arc2/ARC2.php';
+    require_once 'lib/arc2/ARC2.php';
 }
 
 namespace frenchpop {    
@@ -20,6 +20,8 @@ namespace frenchpop {
         static private $store=null;     
         
         static private $eventsCall;
+        
+        static private $endpoints=[];
         
         const prefixes = [
             'pmblex'=>'http://www.pmbservices.fr/pmblex/'
@@ -70,13 +72,28 @@ namespace frenchpop {
         
         public static function storeQuery($query) {
             $q=self::prepareQuery($query);
-            $result=self::$store->query($q); if (!$result) throw new \Exception('Erreur dans la requête '.print_r(self::$store->getErrors(),true));
+            $result=self::$store->query($q); if (!$result) throw new \Exception('Erreur dans la requï¿½te '.print_r(self::$store->getErrors(),true));
             return $result['result'];
+        }
+        
+        
+        public static function getEndpoint($name,$url){
+            if(isset(self::$endpoints[$name])){
+                return self::$endpoints[$name];
+            }
+            //           /* configuration */
+            $config = array(
+                /* remote endpoint */
+                'remote_store_endpoint' => $url,
+            );
+            /* instantiation */
+            self::$endpoints[$name] = \ARC2::getRemoteStore($config);
+            return self::$endpoints[$name];  
         }
         
         public static function initStore($clearStore=false,$clearFiles=false) {
             self::connectDb();
-             //Création des tables
+             //Crï¿½ation des tables
             $q= file_get_contents("app/config/createTables.sql");
             self::$dt->query($q);
             
