@@ -23,5 +23,12 @@ class Entity {
         }
         self::$dbpedia = new Dbpedia();
         return  self::$dbpedia;
+    } 
+    
+    public static function getInstance($type,$uri){
+        switch($type){
+            case '1' :
+                return new Author($uri);
+        }
     }
 }
