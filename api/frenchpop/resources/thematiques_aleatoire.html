@@ -68,8 +68,6 @@
                     <p>{{ thematic.commentaire }}</p>
                 </div>            
                 <hr class="uk-grid-divider">     
-                {% debug ressources %}
-                
                 {% for type,infos  in ressources %}
                 	 <h2>{{ type}} </h2>
                 	 <ul class="uk-list uk-list-line uk-width-medium-1-1 person">
@@ -77,6 +75,7 @@
                 	 		<li><a href="entity?id_resource={{ ressource.id_ressource }}">{{ ressource.ressource }}</a></li>
                 	 		{% if ressource.tags %}
 	                	 		{% for tag in ressource.tags %} 
+	                	 			{% debug tag %}
 	                	 			<div class="uk-badge">{{ tag.label }}</div>
 	                	 		{% endfor %}
                 	 		{% endif %}
