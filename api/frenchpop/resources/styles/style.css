@@ -1,0 +1,54 @@
+.resetQuestion{
+    float:right;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.resetQuestion:before{
+    vertical-align:middle;
+}
+
+.mainQuestion{
+    display: inline-block;
+    margin: 0 auto;
+    vertical-align: bottom;
+    line-height:0;
+}
+
+.speakTo{
+    background:#e7e7e7;
+    height:400px;
+}
+
+.wantToSpeak{
+    display:block;
+    text-align:center;
+    padding-top:35%;
+    font-size: 45px;
+}
+
+.discover{
+    display:block;
+    text-align:center;
+    padding-top:33%;
+    font-size: 45px;
+    line-height: 45px;
+}
+
+.title{
+    text-align:center;
+    text-transform:uppercase;
+    font-size:65px;
+}
+
+.iconTeacher{
+    vertical-align:middle;
+}
+
+.accessTeacher{
+    padding-left:5px;
+}
+
+.uk-panel-box{
+    background:transparent;
+}
