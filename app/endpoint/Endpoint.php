@@ -3,7 +3,7 @@ namespace frenchpop\app\endpoint;
 
 use frenchpop\Frenchpop;
 
-class endpoint {
+class Endpoint {
     protected $store;
     
     public function __construct(){

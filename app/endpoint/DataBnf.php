@@ -3,7 +3,7 @@ namespace frenchpop\app\endpoint;
 
 use frenchpop\Frenchpop;
 
-class dataBnf extends endpoint {
+class DataBnf extends Endpoint {
     protected $name = 'dataBnf';
     protected $url = 'https://data.bnf.fr/sparql';
 
