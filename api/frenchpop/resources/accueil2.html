@@ -6,19 +6,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css" />
     <link rel="stylesheet" href="resources/styles/style.css" type="text/css"/>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-			crossorigin="anonymous"></script>    
+    <script
+			  src="https://code.jquery.com/jquery-2.2.4.min.js"
+			  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			  crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/core/toggle.min.js"></script>
-    <script src='resources/javascript/contribute.js'></script>
+    
   </head>
   <body>
 
         <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
             <nav class="uk-navbar uk-margin-large-bottom">
-                <a class="uk-navbar-brand uk-hidden-small" href="layouts_frontpage.html">
-                <img class="logo" src="resources/images/logo.png"/></a>
+                <a class="uk-navbar-brand uk-hidden-small" href="#"><img class="logo" src="images/logo.png"/></a>
                 <ul class="uk-navbar-nav uk-hidden-small">
                     <li class="uk-active">
                         <a href="#">1</a>
@@ -54,33 +54,37 @@
                 <div class="uk-width-medium-1-1">
 
                     <div class="uk-vertical-align uk-text-center mainSearch">
-                        <div class="uk-vertical-align-middle uk-width-1-2">
-                            <h1 class="uk-heading-large mainQuestion">{{label_thematique}} : {{label_type}}</h1>
-                            </p>
+                        <div class="uk-vertical-align-middle uk-width-1-1">
+                            <h1 class="uk-width-3-4 mainQuestion">French Pop vous propose le thème: </h1>
+                            <a href="thematiques.html"><button class="uk-button participate">Ok, je participe !</button></a>
                         </div>
+
                     </div>
-
+                    <a href="#">
+                        <i class="fa fa-2x fa-refresh resetQuestion" aria-hidden="true"></i>
+                    </a>
                 </div>
-            </div>
+            </div> 
 
-            <hr class="uk-grid-divider">
-            
-            <form class="uk-search uk-search-default searchDiv">
-                <input class="uk-search-input searchForm" type="search" placeholder="" id='searchQuery'>
-                <input type='hidden' id='id_type' value='{{id_type}}'>
-                <input type='hidden' id='id_thematique' value='{{id_thematique}}'>
-                <a data-uk-modal="{target:'#search', center:true}" id='searchButton'>
-                    <i class="fa fa-2x fa-search iconSearch" aria-hidden="true"></i>
-                </a>
-            </form>
             <div class="uk-grid" data-uk-grid-margin>
 
+                <div class="uk-width-medium-1-1">
+                    <div class="speakTo">
+                        <span class="wantToSpeak">Je veux proposer quelque chose à French Pop</span>
+                    </div>
+                </div>
+            </div>
+                    <hr class="uk-grid-divider">
+                            <div class="uk-grid" data-uk-grid-margin>
+
+                <div class="uk-width-medium-1-1">
+                    <div class="explore">
+                        <span class="discover">Je préfère explorer French Pop</span>
+                    </div>
+                </div>
 
             </div>
 
-
-            
-            </div>
 
         </div>
 
@@ -113,6 +117,7 @@
                 <a class="uk-modal-close uk-close"></a>
                 <form class="uk-panel uk-panel-box uk-form">
                     <div class="uk-form-row">
+                    <h2>Accédez à votre compte enseignant</h2>
                         <input class="uk-width-1-1 uk-form-large" placeholder="Nom d'utilisateur" type="text">
                     </div>
                     <div class="uk-form-row">
@@ -126,12 +131,6 @@
                         <a class="uk-float-right uk-link uk-link-muted" href="#">Mot de passe oublié?</a>
                     </div>
                 </form>
-            </div>
-        </div>
-        <div id="search" class="uk-modal">
-            <div class="uk-modal-dialog" id='contribDialog'>
-                <a class="uk-modal-close uk-close"></a>
-                <hr>
             </div>
         </div>
     </body>

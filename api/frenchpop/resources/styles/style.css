@@ -1,44 +1,61 @@
 .resetQuestion{
-    float:right;
-    text-decoration:none;
-    display:inline-block;
+    float: right;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    bottom: 95px;
+    right: 60px;
+    color: white;
 }
 
 .resetQuestion:before{
     vertical-align:middle;
 }
 
-.mainQuestion{
-    display: inline-block;
-    margin: 0 auto;
-    vertical-align: bottom;
-    line-height:0;
+.mainQuestion {
+    line-height: 45px;
+    text-align: left;
+    margin: 50px 0;
+    margin-left:25px;
+    width:52%;
 }
 
 .speakTo{
-    background:#e7e7e7;
-    height:400px;
+    background:#ffb400;
+    height:150px;
+    border-radius: 35px 0 25px;
+
+}
+
+.explore{
+    height:150px;
+    background:#31a9da;
+    border-radius: 35px 0 25px;
+
 }
 
 .wantToSpeak{
-    display:block;
-    text-align:center;
-    padding-top:35%;
-    font-size: 45px;
-}
-
-.discover{
-    display:block;
-    text-align:center;
-    padding-top:33%;
+    display: block;
+    text-align: center;
+    padding-top: 50px;
     font-size: 45px;
     line-height: 45px;
 }
 
+.discover{
+    display: block;
+    text-align: center;
+    padding-top: 60px;
+    font-size: 45px;
+
+}
+
 .title{
-    text-align:center;
-    text-transform:uppercase;
-    font-size:65px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 65px;
+    font-weight: bold;
+    color: #31a9da;
 }
 
 .iconTeacher{
@@ -63,11 +80,14 @@
 
 .mainSearch{
     height:150px;
-    background:#e7e7e7;
+    background: #b2bc55;
+    border-radius: 35px 0 25px;
 }
 
 .logo{
-    height:40px;
+    left: -20px;
+    position: relative;
+
 }
 
 .theme{
@@ -103,4 +123,75 @@
 
 .fa.fa-2x.fa-search {
     margin-left: 10px;
+}
+
+.contribute{
+    cursor: inherit;
+    float:right;
+}
+
+.searchFormTheme{
+    width:100%;
+}
+
+.checkboxType {
+    float: right;
+    top: -20px;
+    position: relative;
+}
+
+.uk-list.uk-list-line.uk-width-medium-1-1 > h2 {
+    margin-top: 40px;
+    margin-bottom:0;
+}
+
+.uk-navbar-flip{
+    background: #31a9da;
+    border-radius: 22px 0px 22px 0;
+}
+
+.uk-navbar-nav > li.uk-open > a, .uk-navbar-nav > li:hover > a, .uk-navbar-nav > li > a:focus{
+    background:#0095d2;
+    border-radius: 22px 0px 22px 0;
+}
+
+.uk-navbar-nav > li > a[href="#"] {
+    cursor: pointer;
+}
+
+.uk-navbar-nav.uk-navbar-flip.uk-hidden-small > li > a {
+    color: #fff;
+}
+
+.subtitle{
+    text-align:right;
+    font-size:22px;
+    font-style: italic;
+    margin-right: 40px;
+}
+
+.uk-grid-divider:empty{
+    border-top: 3px solid #ddd;
+}
+
+.participate{
+    float: right;
+    bottom: 15px;
+    position: relative;
+    width: 33%;
+    background:#ffb400;
+    font-size: 24px;
+    padding: 5px;
+    border-radius: 22px 0 35px 22px;
+}
+
+.speakTo:hover{
+}
+
+.thinkTo{
+        line-height: 45px;
+    text-align: left;
+    margin: 50px 0;
+    margin-left:25px;
+    width:55%;
 }
