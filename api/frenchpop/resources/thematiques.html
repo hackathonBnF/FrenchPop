@@ -145,9 +145,11 @@
 
 		{% for type in types %}
 		<div class="uk-width-medium-1-3">
-		     <div class="themeLib">
-		     <span class="test">{{type.label}}</span>
-		 </div>
+		    <a href="thematiques_suite?id_thematique={{id}}&id_type={{type.id_type}}">
+			<div class="themeLib">
+			<span class="test">{{type.label}}</span>
+			</div>
+		    </a>
                 </div>
 		{% endfor %}
  
