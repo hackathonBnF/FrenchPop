@@ -35,11 +35,12 @@ class GET extends Controler {
         $content= json_decode($content);
         FrenchPop::query("insert into ressources (identifiant,num_type) values('".addslashes("http://data.bnf.fr/".$content->ark)."',$content->id_type)");
         $rid=FrenchPop::$dt->insert_id;
-        FrenchPop::query("insert into thematique_ressource (num_thematique,num_ressource) values(".$content->id_thematique.",$rid)");
+        FrenchPop::query("insert into thematique_ressource (num_thematique,num_ressource,commentaire) values(".$content->id_thematique.",$rid,'".addslashes($content->comment)."')");
         $rtr=FrenchPop::$dt->insert_id;
         //Tags
         $tags=explode(" ",$content->tags);
-        foreach ($tags as $tag) {
+        for ($i=0; $i<count($tags); $i++) {
+            $tag=$tags[$i];
             if (trim($tag)) {
                 $r=FrenchPop::query("select id_tag from tag where label='".addslashes($tag)."'");
                 if ($r->num_rows) {
@@ -51,7 +52,8 @@ class GET extends Controler {
                 }
                 FrenchPop::query("insert into thematique_ressource_tag (num_thematique_ressource,num_tag) values($rtr,$id_tag)");
             }
-            return [];
         }
+        return $rid;
+
     }
 }

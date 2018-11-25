@@ -38,8 +38,9 @@ class contribute {
             id_thematique:document.getElementById('id_thematique').value,
             id_type:document.getElementById('id_type').value
         }
-        var s=this.sendRequest("../ajax/addPerson?content="+encodeURIComponent(JSON.stringify(sub)));
-        document.location='../frenchpop/accueil';
+        var s=JSON.parse(this.sendRequest("../ajax/addPerson?content="+encodeURIComponent(JSON.stringify(sub))));
+        
+        document.location='../frenchpop/entity?id_resource='+s;
     }
 }
 
@@ -58,7 +59,7 @@ window.addEventListener("load",function() {
                                 <span class="uk-dropdown" style="width:100%; background:white; margin:0;">
                                 <span class="#">Tags</span>  
                                     <input type='hidden' id='ark{{id}}' value='{{ark}}'>
-                                    <input class="uk-search-input searchForm" type="search" placeholder="" id='tags{{id}}'>
+                                    <input class="uk-search-input searchForm" type="search" placeholder="" id='tags{{id}}' num='{{id}}'>
                                     <div id='sugtags{{id}}'>
                                     </div>
                                     <br/><br/>
@@ -80,8 +81,12 @@ window.addEventListener("load",function() {
                        item=item.replace("{{id}}",i);
                        item=item.replace("{{id}}",i);
                        item=item.replace("{{id}}",i);
+                       item=item.replace("{{id}}",i);
                        document.getElementById('contribDialog').innerHTML=document.getElementById('contribDialog').innerHTML+item+'<hr/>';
+                   }
+                   for (var i in persons) {
                        document.getElementById('tags'+i).addEventListener('keyup',function(e) {
+                           var i=e.originalTarget.getAttribute('num');
                            var tags=document.getElementById('tags'+i).value;
                            tags=tags.split(" ");
                            var lastTag=tags[tags.length-1];
