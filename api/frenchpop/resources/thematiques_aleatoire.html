@@ -74,8 +74,7 @@
                 	 	{% for ressource in infos %} 
                 	 		<li><a href="entity?id_resource={{ ressource.id_ressource }}">{{ ressource.ressource }}</a></li>
                 	 		{% if ressource.tags %}
-                	 			{% debug ressource.tags %}
-	                	 		{% for id_tag, tag in ressource.tags %} 
+	                	 		{% for tag in ressource.tags %} 
 	                	 			<div class="uk-badge">{{ tag.label }}</div>
 	                	 		{% endfor %}
                 	 		{% endif %}

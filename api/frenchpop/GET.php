@@ -104,7 +104,7 @@ class GET extends Controler {
                 $r2 = FrenchPop::query("select num_tag,label from thematique_ressource_tag join tag on num_tag = id_tag join  thematique_ressource on num_thematique_ressource = id_thematique_ressource where num_ressource =".$row->id_ressource);
                 $row->tags = [];
                 while($row2 = $r2->fetch_object()){
-                    $row->tags = $row2;
+                    $row->tags[] = $row2;
                 }
                 $ressources[$row->type][] = $row;
             }
