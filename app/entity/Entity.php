@@ -29,6 +29,8 @@ class Entity {
         switch($type){
             case '1' :
                 return new Author($uri);
+            case '1' :
+                return new Expression($uri);
         }
     }
 }

@@ -33,23 +33,29 @@ class DataBnf extends Endpoint {
         if(strpos($arkNumber,'#about') === false){
             $arkNumber.= "#about";
         }
-        return $this->query("select distinct * where {   
+        return $this->query("select * where {   
             ?expr rdf:type frbr-rda:Expression .
             ?expr dcterms:contributor <http://data.bnf.fr/".$arkNumber.">
-        }");
+        } limit 10");
     }
     
     public function getExpressionInfos($uri){
-        $result = $this->query("select distinct * where {
+        $result = $this->query("select * where {
             <".$uri."> ?property ?value .
-            ?other rdarelationships:expressionManifested <".$uri."> .
-            ?other dcterms:title ?title
+            ?manif rdarelationships:expressionManifested <".$uri."> .
+            ?manif dcterms:title ?title .
+            optional {
+                ?manif dcterms:abstract ?abstract
+            }
         }");
         $response = [];
         if(count($result)){
             for($i=0 ; $i<count($result) ; $i++){
                 if(isset($result[$i]['title']) && !isset($response['title'])){
                     $response['title'][] =  $result[$i]['title'];
+                } 
+                if(isset($result[$i]['abstract']) && !isset($response['abstract'])){
+                    $response['abstract'][] =  $result[$i]['abstract'];
                 }
             }
         }

@@ -109,6 +109,7 @@ class Author extends Entity{
         for($i=0 ; $i<count($result) ; $i++){
             $this->expressions[] = new Expression($result[$i]['expr']);
         }
+        return $this->expressions;
     }
     
 }
