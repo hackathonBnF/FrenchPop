@@ -143,49 +143,14 @@
 
             <div class="uk-grid" data-uk-grid-margin>
 
-
-                <div class="uk-width-medium-1-3">
-                    <div class="themeLib">
-                        <span class="test">Contes</span>
-                    </div>
+		{% for type in types %}
+		<div class="uk-width-medium-1-3">
+		     <div class="themeLib">
+		     <span class="test">{{type.label}}</span>
+		 </div>
                 </div>
-                
-                <div class="uk-width-medium-1-3">
-                    <div class="themeLib">
-                        <span class="test">Fables</span>
-                    </div>
-                </div>
-
-                <div class="uk-width-medium-1-3">
-                    <div class="themeLib">
-                        <span class="test">Ecrivains</span>
-                    </div>
-                </div>
-
-                <div class="uk-width-medium-1-4">
-                    <div class="themeLib">
-                        <span class="test">Romans célèbres</span>
-                    </div>
-                </div>
-
-                <div class="uk-width-medium-1-4">
-                    <div class="themeLib">
-                        <span class="test">Dessins animés</span>
-                    </div>
-                </div>
-                
-                <div class="uk-width-medium-1-4">
-                    <div class="themeLib">
-                        <span class="test">Jeux</span>
-                    </div>
-                </div>
-
-                <div class="uk-width-medium-1-4">
-                    <div class="themeLib">
-                        <span class="test">Comptines</span>
-                    </div>
-                </div>
-
+		{% endfor %}
+ 
             </div>
 
             <hr class="uk-grid-divider">
