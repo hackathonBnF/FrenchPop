@@ -3,6 +3,8 @@ namespace frenchpop\api\frenchpop;
 
 use frenchpop\webservice\Controler;
 use frenchpop\FrenchPop;
+use frenchpop\app\entity\Author;
+use frenchpop\app\entity\Entity;
 
 class GET extends Controler {
     
@@ -59,5 +61,32 @@ class GET extends Controler {
 	    'label_type' => $label_type,
 	];
 	return FrenchPop::render(__DIR__ . "/resources/thematiques_suite.html", $data);
+    } 
+    
+    public function entity(){
+        $thematics = $tags = [];
+        $id_resource = $this->getQV('id_resource');
+        $r = FrenchPop::query("select * from ressources where id_ressource = ".$id_resource);
+        $row =  $r->fetch_object();
+        $resource = Entity::getInstance($row->num_type,$row->identifiant);
+        $r = FrenchPop::query("select * from thematique_ressource join thematiques on num_thematique = id_thematique where num_ressource = ".$id_resource);
+        while($row = $r->fetch_object()){
+            $thematics[] = $row;
+        }
+        $r = FrenchPop::query("select tag.* from thematique_ressource join thematiques on num_thematique = id_thematique join thematique_ressource_tag on num_thematique_ressource = id_thematique_ressource join tag on id_tag = num_tag where num_ressource = ".$id_resource);
+        while($row = $r->fetch_object()){
+            $tags[] = $row;
+        }
+        try{
+            $html = FrenchPop::render(__DIR__."/resources/author.html", [
+                'resource' => $resource,
+                'thematics' => $thematics,
+                'tags' => $tags
+                
+            ]);
+        }catch(Exception $e){
+            var_dump($e);
+        }
+        return $html;
     }
 }
