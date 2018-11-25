@@ -263,4 +263,29 @@ function h2o($name, $options = array()) {
     return $instance;
 }
 
+
+function classLookup($name, $context) {
+    $obj = null;
+    $attributes = explode('.', $name);
+    // On regarde si on a directement une instance d'objet, dans le cas des boucles for
+    if (is_object($value = $context->getVariable(substr($attributes[0], 1))) && (count($attributes) > 1)) {
+        $obj = $value;
+        $property = str_replace($attributes[0].'.', '', $name);
+        $attributes = explode(".",$property);
+        for($i=0 ; $i<count($attributes) ; $i++){
+            $attribute = $attributes[$i];
+            if (method_exists($obj, "get".ucfirst($attribute))) {
+                $obj = call_user_func_array(array($obj, "get".ucfirst($attribute)), array());
+            } else{
+                $obj = null;
+                break;
+            }
+        }
+    }
+    return $obj;
+}
+
+
+H2o::addLookup("classLookup");
+
 ?>
