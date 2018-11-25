@@ -52,3 +52,39 @@
 .uk-panel-box{
     background:transparent;
 }
+
+.thinkTo{
+    margin-top:30px;
+}
+
+.ifSay{
+    padding:40px;
+}
+
+.mainSearch{
+    height:150px;
+    background:#e7e7e7;
+}
+
+.logo{
+    height:40px;
+}
+
+.theme{
+    height:230px;
+    background:#e7e7e7;
+}
+
+.themeLib{
+    background:#e7e7e7;
+    display: block;
+    text-align: center;
+    padding: 90px 0;
+    line-height: 45px;
+    font-size: 25px;
+}
+
+.disconnect{
+    padding-left:5px;
+    vertical-align:middle;
+}
