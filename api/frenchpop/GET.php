@@ -39,4 +39,24 @@ class GET extends Controler {
 
     }
     
+    
+    public function thematiques_suite()
+    {
+	$id_thematique = $this->getQV('id_thematique');
+	$id_type = $this->getQV('id_type');
+	
+	$r = FrenchPop::query("select label from thematiques where id_thematique=" . $id_thematique);
+	$label_thematique = $r->fetch_object()->label;
+	
+	$r = FrenchPop::query("select label from types where id_type=" . $id_type);
+	$label_type = $r->fetch_object()->label;
+	
+	$data = [
+	    'id_thematique' => $id_thematique,
+	    'label_thematique' => $label_thematique,
+	    'id_type' => $label_type,
+	    'label_type' => $label_type,
+	];
+	return FrenchPop::render(__DIR__ . "/resources/thematiques_suite.html", $data);
+    }
 }
