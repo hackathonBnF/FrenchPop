@@ -4,6 +4,7 @@ namespace frenchpop\app\entity;
 
 use frenchpop\app\endpoint\DataBnf;
 use frenchpop\app\entity\Entity;
+use frenchpop\app\entity\Expression;
 
 class Author extends Entity{
     protected $arkNumber;
@@ -13,6 +14,7 @@ class Author extends Entity{
     protected $gender="";
     protected $biographicalInformation="";
     protected $thumbnails = [];
+    protected $expressions = [];
     
     /**
      * @return mixed
@@ -83,6 +85,7 @@ class Author extends Entity{
                     break;
             }
         }
+        $this->getExpressions();
     }
     /**
      * @return Ambigous <multitype:, unknown>
@@ -98,6 +101,14 @@ class Author extends Entity{
     public function getName()
     {
         return $this->name;
+    }
+    
+    public function getExpressions(){
+        $result = $this->getDataBnf()->getExpressionsFromAuthor($this->arkNumber);
+        for($i=0 ; $i<count($result) ; $i++){
+            $this->expressions[] = new Expression($result[$i]['expr']);
+        }
+		return $this->expressions;
     }
 
 }
