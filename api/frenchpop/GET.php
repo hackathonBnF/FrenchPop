@@ -94,16 +94,25 @@ class GET extends Controler {
         
         $id_thematique = $this->getQV('id_thematique');
         
-        $r = FrenchPop::query("select label from thematiques where id_thematique=".$id_thematique);
-        $label = $r->fetch_object()->label;
+        $r = FrenchPop::query("select * from thematiques where id_thematique=".$id_thematique);
+        $thematic = $r->fetch_object();
         
-//         $r = FrenchPop::query("select id_type, label from types order by label");
-//         $types = $r->fetch_all(MYSQLI_ASSOC);
-        
+        $r = FrenchPop::query("select types.label as type, ressources.label as ressource, identifiant, id_ressource from thematique_ressource join ressources on num_ressource = id_ressource join types on num_type = id_type where num_thematique = ".$id_thematique);
+        $ressources = [];
+        if($r->num_rows > 0){
+            while($row = $r->fetch_object()){
+                $r2 = FrenchPop::query("select num_tag,label from thematique_ressource_tag join tag on num_tag = id_tag join  thematique_ressource on num_thematique_ressource = id_thematique_ressource where num_ressource =".$row->id_ressource);
+                $row->tags = [];
+                while($row2 = $r2->fetch_object()){
+                    $row->tags = $row2;
+                }
+                $ressources[$row->type][] = $row;
+            }
+        }
         $data = [
-//             'id'=>$id_thematique,
-//             'label'=>$label,
-//             'types'=>$types,
+            'thematic'=>$thematic,    
+            'ressources'=> $ressources       
+//  
         ];
         return FrenchPop::render(__DIR__."/resources/thematiques_aleatoire.html", $data);
         
