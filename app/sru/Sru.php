@@ -12,7 +12,7 @@ class Sru {
     }
 
     private function prepareURL($url,$query) {
-        return str_replace("{{query}}", $query, $url);
+        return str_replace("{{query}}", rawurlencode($query), $url);
     }
     
     private function parseResult($xml,$fields=false) {
@@ -51,7 +51,7 @@ class Sru {
     public function searchPerson($query) {
         curl_setopt($this->curl, CURLOPT_URL, $this->prepareURL(self::personURL,$query));
         $result=curl_exec($this->curl);
-        return $this->parseResult($result,["200/b","200/a"]);
+        if ($result) return $this->parseResult($result,["200/b","200/a"]);
     }
 }
 

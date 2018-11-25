@@ -23,15 +23,16 @@ class GET extends Controler {
     
     public function thematiques() {
 	
-      $map = $this->mapPath(['id_thematique']);
-      $r = FrenchPop::query("select label from thematiques where id_thematique=".$map->id_thematique);
+      $id_thematique = $this->getQV('id_thematique');
+      
+      $r = FrenchPop::query("select label from thematiques where id_thematique=".$id_thematique);
       $label = $r->fetch_object()->label;
       
       $r = FrenchPop::query("select id_type, label from types order by label");
       $types = $r->fetch_all(MYSQLI_ASSOC);
    
       $data = [
-	  'id'=>$map->id_thematique, 
+	  'id'=>$id_thematique, 
 	  'label'=>$label,
 	  'types'=>$types,
       ];
@@ -54,7 +55,7 @@ class GET extends Controler {
 	$data = [
 	    'id_thematique' => $id_thematique,
 	    'label_thematique' => $label_thematique,
-	    'id_type' => $label_type,
+	    'id_type' => $id_type,
 	    'label_type' => $label_type,
 	];
 	return FrenchPop::render(__DIR__ . "/resources/thematiques_suite.html", $data);
