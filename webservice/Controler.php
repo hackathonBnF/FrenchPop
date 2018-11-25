@@ -88,7 +88,7 @@ class Controler {
      * @access hide
      */
     public function resources() {
-        $map=$this->mapPath(["path"]);
+        $map=$this->mapPath(["path"],true);
         $file="api/".$this->request->getPath()[0]."/resources/".$map->path;
         if (is_file($file)) 
             $this->response->setDirectResource($file);

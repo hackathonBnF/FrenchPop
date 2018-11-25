@@ -9,7 +9,7 @@ class GET extends Controler {
    public function accueil() {
         //theme alea
 	$r = FrenchPop::query('select count(*) from thematiques');
-	$n = $r->num_rows();
+	$n = $r->num_rows;
 	$x = rand(0,$n-1);
 	$r = FrenchPop::query("select id_thematique, label from thematiques limit $x,1");
 	$thematique = $r->fetch_object();

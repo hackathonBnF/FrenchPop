@@ -116,7 +116,21 @@ class Response {
     public function flush() {
         $this->isFlushed=true;
         if ($this->directResource) {
-            readfile ($this->directResource);
+            $extension = pathinfo($this->directResource,PATHINFO_EXTENSION);
+            switch($extension){
+                case 'css':
+                    $mime = 'text/css';
+                break;
+                case 'js':
+                    $mime = 'application/javascript';
+                default:
+                    $finfo= finfo_open();
+                    $mime= finfo_file($finfo, $this->directResource);
+                break;
+            }
+            
+            header("Content-type: ".$mime);
+            readfile($this->directResource);
             return;
         }
         print $this->getResponse();
