@@ -1,8 +1,7 @@
 .resetQuestion{
+    float:right;
     text-decoration:none;
     display:inline-block;
-    margin-left:10px;
-    
 }
 
 .resetQuestion:before{
@@ -88,4 +87,20 @@
 .disconnect{
     padding-left:5px;
     vertical-align:middle;
+}
+
+.searchForm{
+    width:95%;
+}
+
+.searchDiv{
+    margin-bottom:25px;
+}
+
+.iconSearch{
+    vertical-align:sub;
+}
+
+.fa.fa-2x.fa-search {
+    margin-left: 10px;
 }
