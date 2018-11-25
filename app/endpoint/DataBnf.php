@@ -36,7 +36,7 @@ class DataBnf extends Endpoint {
         return $this->query("select * where {   
             ?expr rdf:type frbr-rda:Expression .
             ?expr dcterms:contributor <http://data.bnf.fr/".$arkNumber.">
-        } limit 10");
+        } limit 3");
     }
     
     public function getExpressionInfos($uri){
