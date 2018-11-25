@@ -24,7 +24,5 @@ class Expression extends Entity{
 //                     break;
             }
         }
-        var_dump($this->uri);
-        var_dump($infos);
     }
 }
