@@ -16,15 +16,6 @@ class DataBnf extends Endpoint {
         if(strpos($arkNumber,'#about') === false){
            $arkNumber.= "#about";
         }
-        $result = $this->query("select * where { <http://data.bnf.fr/".$arkNumber."> ?property ?object }");
-        $response = [];
-        if(count($result)){
-            for($i=0 ; $i<count($result) ; $i++){
-                if(isset($result[$i]['property'])){
-                    $response[$result[$i]['property']][] =  $result[$i]['object'];
-                }
-            }
-        }
-        return $result;
+        return $this->getArkInfos($arkNumber);;
     }
 }
