@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace frenchpop\app\entity;
 
@@ -23,7 +23,7 @@ class Author extends Entity{
     {
         return $this->arkNumber;
     }
-
+    
     /**
      * @return mixed
      */
@@ -31,7 +31,7 @@ class Author extends Entity{
     {
         return $this->familyName;
     }
-
+    
     /**
      * @return mixed
      */
@@ -39,7 +39,7 @@ class Author extends Entity{
     {
         return $this->givenName;
     }
-
+    
     /**
      * @return mixed
      */
@@ -47,17 +47,10 @@ class Author extends Entity{
     {
         return $this->gender;
     }
-
-    /**
-     * @param mixed $arkNumber
-     */
-    public function setArkNumber($arkNumber)
-    {
-        $this->arkNumber = $arkNumber;
-    }
-
-    public function __construct($arkNumber){
-        $this->arkNumber = $arkNumber;
+    
+    public function __construct($uri){
+        $this->arkNumber = str_replace('http://data.bnf.fr/','',$uri);
+        $this->uri = $uri;
         $this->fetchDatas();
     }
     
@@ -69,7 +62,7 @@ class Author extends Entity{
                     $this->name = $values[0];
                     break;
                 case 'http://xmlns.com/foaf/0.1/familyName' :
-                    $this->famiyName = $values[0];
+                    $this->familyName = $values[0];
                     break;
                 case 'http://xmlns.com/foaf/0.1/givenName' :
                     $this->givenName = $values[0];
@@ -85,8 +78,16 @@ class Author extends Entity{
                     break;
             }
         }
-        $this->getExpressions();
+        // $this->getExpressions();
     }
+    /**
+     * @return Ambigous <string, unknown>
+     */
+    public function getBiographicalInformation()
+    {
+        return $this->biographicalInformation;
+    }
+    
     /**
      * @return Ambigous <multitype:, unknown>
      */
@@ -94,7 +95,7 @@ class Author extends Entity{
     {
         return $this->thumbnails;
     }
-
+    
     /**
      * @return mixed
      */
@@ -109,5 +110,5 @@ class Author extends Entity{
             $this->expressions[] = new Expression($result[$i]['expr']);
         }
     }
-
+    
 }
