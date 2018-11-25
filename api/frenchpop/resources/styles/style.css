@@ -1,7 +1,8 @@
 .resetQuestion{
-    float:right;
     text-decoration:none;
     display:inline-block;
+    margin-left:10px;
+    
 }
 
 .resetQuestion:before{
